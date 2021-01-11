@@ -1,0 +1,28 @@
+spring:
+  application:
+            name: UserModule
+  cloud:
+    config:
+         uri: http://host.docker.internal:8888
+    vault:
+      host: ${VAULT_HOST:host.docker.internal}
+      port: ${VAULT_HOST_PORT:8200}
+      scheme: http
+      authentication: TOKEN
+      token: ${VAULT_TOKEN:s.RNzlaawtj5dxHhDJYZFQdz7O}
+      kv:
+        enabled: true
+        backend: secret
+        profile-separator: '/'
+        default-context: application
+        application-name: UserModule
+      generic:
+           enabled: false
+  profiles: 
+      active: dev
+  cache:
+    type: redis
+  redis:
+    host: host.docker.internal
+    port: 6379
+
